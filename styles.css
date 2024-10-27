@@ -1,1 +1,41 @@
-.card { border: 1px solid black;}
+.card { 
+    padding: 20px;
+    background-color: #10b981;
+    border-radius: 8px;
+   border-left: 10px solid #dc2626;
+   box-shadow: 3px 3px 3px 0px #C3CCC6;
+   display: grid;
+   
+
+
+}
+
+body { 
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+   gap: 20px;
+}
+
+.book-keep-title { 
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.main-container { 
+    display: grid;
+    width: 80vw;
+    height: 60vh;
+    border: 1px solid black;
+    grid-template-columns: repeat(auto-fit, clamp(150px,200px, 300px));
+    grid-template-rows: repeat(auto-fit, clamp(200px, 250px, 300px));
+    gap: 20px;
+}
+
+.title { 
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.author, .pages { font-weight: bold;}
+

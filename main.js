@@ -30,11 +30,13 @@ function Book(title, author, pages, read) {
     read: "read",
   }
 
-  myLibrary.push(book1,book2);
+  myLibrary.push(book1,book2); // adding books to store in array
 
 
 let mainDiv = document.querySelector(".main-container");
 
+
+// function to loop through each array and display each book on page.
 myLibrary.forEach( (element) => { 
 let sampleBook = "";
 for (let x in element) { 
@@ -49,6 +51,31 @@ mainDiv.appendChild(newBook);
 
 }
 );
+
+// function to create card for each new book
+
+const cardClassNames = ["title", "author-label", "author", "pages-label", "pages", "read"]
+
+function createCard () { 
+    let card = document.createElement("div");
+    card.classList.add("card");
+    // for (let i=0; i < 7; i++) { 
+    //     const div = document.createElement("div");
+    //     div.textContent = "Pussy bitch";
+    //     card.appendChild(div);
+    // }
+
+    cardClassNames.forEach(className => { 
+        const div = document.createElement("div");
+        div.classList.add(className);
+        div.textContent = `this is ${className}`;
+        card.appendChild(div);
+    })
+
+    mainDiv.appendChild(card) ;
+}
+
+createCard();
 
 // let arraySplit = "";
 // for (let x in myLibrary) { 
