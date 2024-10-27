@@ -14,24 +14,15 @@ function Book(title, author, pages, read) {
 
 let mainDiv = document.querySelector(".main-container");
 
-let card = document.createElement("div");
 
 
-let title = document.createElement("div");
-let authorLabel = document.createElement("div");
-let author = document.createElement("div");
-let pagesLabel = document.createElement("div");
-let pages = document.createElement("div");
-let read = document.createElement("div");
+// function addBookToLibrary() { 
+//     let question = prompt("Please enter the title,author,number of pages, read or not yet read, separated by commas", "Harry Potter and the Philosopher's stone, J K Rowling, 352, read");
+//     let bookParameters = question.split(",");
+//     let newBook = new Book(bookParameters[0], bookParameters[1], bookParameters[2], bookParameters[3]);
+//     myLibrary.push(newBook);
 
-
-function addBookToLibrary() { 
-    let question = prompt("Please enter the title,author,number of pages, read or not yet read, separated by commas", "Harry Potter and the Philosopher's stone, J K Rowling, 352, read");
-    let bookParameters = question.split(",");
-    let newBook = new Book(bookParameters[0], bookParameters[1], bookParameters[2], bookParameters[3]);
-    myLibrary.push(newBook);
-
-  }
+//   }
 
 // function to loop through each array and display each book on page.
 
@@ -42,22 +33,19 @@ function addBookToLibrary() {
 const cardClassNames = ["title", "author-label", "author", "pages-label", "pages", "read"] //array of class names for card to create each div and assign 
 //appropriate class to comply with card styling for each new book
 
-function createCard() { 
 
 //creates initial card but does not append until we've looped through myLibrary and added each value to specific text content element
 
-    card.classList.add("card");
-    title.classList.add("title");
-    authorLabel.classList.add("author-label");
-    authorLabel.textContent= "Author:";
-    author.classList.add("author");
-    pagesLabel.classList.add("pages-label");
-    pagesLabel.textContent= "Pages:";
-    pages.classList.add("pages");
-    read.classList.add("read");
+    // card.classList.add("card");
+    // title.classList.add("title");
+    // authorLabel.classList.add("author-label");
+    // authorLabel.textContent= "Author:";
+    // author.classList.add("author");
+    // pagesLabel.classList.add("pages-label");
+    // pagesLabel.textContent= "Pages:";
+    // pages.classList.add("pages");
+    // read.classList.add("read");
 
-}
- 
 
 //     card.classList.add("card");
 
@@ -86,13 +74,35 @@ function createCard() {
 
 function addBookToPage() { 
 
-createCard();
+// myLibrary.forEach( (element) => { 
 
-myLibrary.forEach( (element) => { 
+   let lastBook= myLibrary[myLibrary.length-1];
+
+
+    let card = document.createElement("div");
+    let title = document.createElement("div");
+    let authorLabel = document.createElement("div");
+    let author = document.createElement("div");
+    let pagesLabel = document.createElement("div");
+    let pages = document.createElement("div");
+    let read = document.createElement("div");
+// create divs for each iteration of loop
+
+    card.classList.add("card");
+    title.classList.add("title");
+    authorLabel.classList.add("author-label");
+    authorLabel.textContent= "Author:";
+    author.classList.add("author");
+    pagesLabel.classList.add("pages-label");
+    pagesLabel.textContent= "Pages:";
+    pages.classList.add("pages");
+    read.classList.add("read");
+
+    // add specific attributes
  
     let sampleBook = [];
-    for (let x in element) { 
-        sampleBook.push(element[x]);
+    for (let key in lastBook) { 
+        sampleBook.push(lastBook[key]);
         console.log(sampleBook);
     };
    
@@ -100,6 +110,8 @@ myLibrary.forEach( (element) => {
     author.textContent = sampleBook[1];
     pages.textContent = sampleBook[2];
     read.textContent = sampleBook[3];
+
+    //loop through each object and assign key value to specific elements
 
 
     // let newBook = document.createElement("div");
@@ -117,9 +129,32 @@ myLibrary.forEach( (element) => {
     mainDiv.appendChild(card);
 
     }
-    );
 
-};
+
+const dialog = document.querySelector("dialog");
+const showButton = document.querySelector(".modal-button");
+const closeButton = document.querySelector(".close-dialog");
+
+showButton.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+closeButton.addEventListener("click", () => {
+    dialog.close()
+});
+
+document.getElementById("new-book").addEventListener("submit", function (event) {
+    event.preventDefault();
+    let titleName = document.getElementById("title-input").value; 
+    let authorInput = document.getElementById("author-input").value; 
+    let pagesInput = document.getElementById("pages-input").value; 
+    console.log(titleName);
+    console.log(authorInput);
+    console.log(pagesInput);
+    dialog.close();
+})
+
+
 
 
 

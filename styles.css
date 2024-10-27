@@ -39,3 +39,12 @@ body {
 
 .author, .pages { font-weight: bold;}
 
+.new-book-form { 
+    border: 1px solid black;
+}
+
+dialog { 
+    height: 50vh;
+    width: 50vw;
+}
+
