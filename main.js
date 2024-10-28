@@ -100,6 +100,8 @@ function addBookToPage() {
     let read = document.createElement("div");
     let buttons = document.createElement("div");
     let remove = document.createElement("button");
+    let changeRead = document.createElement("button");
+   
 
     // create each div that makes up complete card.
 
@@ -113,7 +115,10 @@ function addBookToPage() {
     pagesLabel.textContent= "Pages:";
     pages.classList.add("pages");
     read.classList.add("read");
+    buttons.classList.add("buttons");
     remove.classList.add("remove");
+    changeRead.classList.add("change-read");
+
 
     // add specific attributes to these divs to inherit the card styling and content.
 
@@ -140,6 +145,7 @@ function addBookToPage() {
     read.textContent = bookHolder[3];
 
     remove.textContent = "Remove";
+    changeRead.textContent = "Read/Not yet read";
 
     //loop through each object and assign key value to text of specific elements using for..in which handles looping through objects.
 
@@ -155,6 +161,7 @@ function addBookToPage() {
     card.appendChild(pages);
     card.appendChild(read);
     buttons.appendChild(remove);
+    buttons.appendChild(changeRead);
     card.appendChild(buttons);
 
 
@@ -211,21 +218,35 @@ document.getElementById("new-book").addEventListener("submit", function (event) 
 // reassign data-index of remaining ".card" elements to correspond with new length of array. 
 
 mainDiv.addEventListener("click", function (event) { 
+
+    const cardToRemove = event.target.closest(".card");
+    const currentArrayIndex = parseInt(cardToRemove.dataset.index);
+
+    if (event.target.classList.contains("change-read")) { 
+        
+
+        myLibrary[currentArrayIndex].changeReadStatus();
+        const closestRead = cardToRemove.querySelector(".read");
+
+            if (closestRead) { 
+                closestRead.textContent = myLibrary[currentArrayIndex].read;
+            }
+
+    }
+
     if (event.target.classList.contains("remove")) {
 
         //locate the value of this card's data-index
         //remove the object at myLibrary[this.data-index]
-        const cardToRemove = event.target.closest(".card");
-        const currentArrayIndex = cardToRemove.dataset.index;
+        
+       
+        
         myLibrary.splice(currentArrayIndex,1);
-
 
         // locate all cards now that we've deleted. 
         // assign index of cards. length to each card. 
 
-        
-
-        console.log(currentArrayIndex);
+        console.log(currentArrayIndex,typeof(currentArrayIndex));
         console.log(myLibrary);
             if (cardToRemove) { 
                 cardToRemove.remove();
@@ -236,16 +257,43 @@ mainDiv.addEventListener("click", function (event) {
                 });
             }
 
+        }
+
+
+    
+
             // remainingCards.forEach((card, newIndex) => {
             //     card.setAttribute("data-index", newIndex);
             // });
     
-    }
+    
 }
 );
 
 //setting the event on the nearest 'parent' holding all of the remove buttons and then using event delegation to target the specific button.
 // saves adding individual event listeners on each button.
+
+
+// change read status function, created on the Book.prototype so all can access: 
+
+//onClick { 
+// if (value of current object's [read:] === "read") 
+    // [read:] = "Not read yet"
+
+
+// else if ( value of current object's read: === "Not read yet") { 
+    // [read:] = Read }
+
+    // //read.textContent = value of [read:]
+
+Book.prototype.changeReadStatus = function () { 
+    if (this.read === "Read") { 
+        this.read = "Not read yet";
+    }
+    else if (this.read === "Not read yet" ) {
+        this.read = "Read";
+    }
+};
 
 
 
