@@ -100,16 +100,16 @@ function addBookToPage() {
 
     // add specific attributes
  
-    let sampleBook = [];
+    let bookHolder = [];
     for (let key in lastBook) { 
-        sampleBook.push(lastBook[key]);
-        console.log(sampleBook);
+        bookHolder.push(lastBook[key]);
+        console.log(bookHolder);
     };
    
-    title.textContent= sampleBook[0];
-    author.textContent = sampleBook[1];
-    pages.textContent = sampleBook[2];
-    read.textContent = sampleBook[3];
+    title.textContent= bookHolder[0];
+    author.textContent = bookHolder[1];
+    pages.textContent = bookHolder[2];
+    read.textContent = bookHolder[3];
 
     //loop through each object and assign key value to specific elements
 
@@ -145,12 +145,21 @@ closeButton.addEventListener("click", () => {
 
 document.getElementById("new-book").addEventListener("submit", function (event) {
     event.preventDefault();
-    let titleName = document.getElementById("title-input").value; 
+    let titleInput = document.getElementById("title-input").value; 
     let authorInput = document.getElementById("author-input").value; 
     let pagesInput = document.getElementById("pages-input").value; 
-    console.log(titleName);
-    console.log(authorInput);
-    console.log(pagesInput);
+    let readInput = document.querySelector('input[name="read"]:checked').value;
+
+    let newBook = new Book(titleInput,authorInput,pagesInput, readInput);
+
+    myLibrary.push(newBook);
+
+    // let newBook = new Book(titleInput, authorInput, pagesInput, ) 
+
+    // get value from form inputs
+    //assign value to variable for future use
+    // create a new object using input value variables as parameters
+    // 
     dialog.close();
 })
 
