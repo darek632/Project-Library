@@ -144,7 +144,7 @@ function addBookToPage() {
     pages.textContent = bookHolder[2];
     read.textContent = bookHolder[3];
 
-    remove.textContent = "Remove";
+    remove.textContent = "Remove book";
     changeRead.textContent = "Read/Not yet read";
 
     //loop through each object and assign key value to text of specific elements using for..in which handles looping through objects.
