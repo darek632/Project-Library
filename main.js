@@ -154,6 +154,10 @@ document.getElementById("new-book").addEventListener("submit", function (event) 
 
     myLibrary.push(newBook);
 
+    addBookToPage();
+
+    event.target.reset();
+
     // let newBook = new Book(titleInput, authorInput, pagesInput, ) 
 
     // get value from form inputs
