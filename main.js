@@ -11,8 +11,24 @@ function Book(title, author, pages, read) {
    
   }
 
+let sampleBook1 = new Book ("Harry Potter and the Chamber of Secrets","J.K. Rowling",251, "Not read yet");
+let sampleBook2 = new Book ("The Satsuma Complex", "Bob Mortimer", 320, "Read");
 
 let mainDiv = document.querySelector(".main-container");
+
+let firstCard = document.querySelector(".card:first-child");
+
+myLibrary.push(sampleBook1, sampleBook2);
+
+firstCard.setAttribute("data-index","0");
+
+console.log(firstCard);
+
+let secondCard = document.querySelectorAll(".card")[1];
+secondCard.setAttribute("data-index","1");
+
+console.log(secondCard);
+
 
 
 
@@ -29,10 +45,6 @@ let mainDiv = document.querySelector(".main-container");
 
 
 // function to create card for each new book
-
-const cardClassNames = ["title", "author-label", "author", "pages-label", "pages", "read"] //array of class names for card to create each div and assign 
-//appropriate class to comply with card styling for each new book
-
 
 //creates initial card but does not append until we've looped through myLibrary and added each value to specific text content element
 
@@ -99,6 +111,14 @@ function addBookToPage() {
     read.classList.add("read");
 
     // add specific attributes
+
+    
+    let cards = document.querySelectorAll(".card");
+    let count = cards.length;
+
+    card.setAttribute("data-type",count);
+    console.log(card);
+
  
     let bookHolder = [];
     for (let key in lastBook) { 
