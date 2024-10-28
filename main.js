@@ -219,14 +219,14 @@ document.getElementById("new-book").addEventListener("submit", function (event) 
 
 mainDiv.addEventListener("click", function (event) { 
 
-    const cardToRemove = event.target.closest(".card");
-    const currentArrayIndex = parseInt(cardToRemove.dataset.index);
+    const cardToAction = event.target.closest(".card");
+    const currentArrayIndex = parseInt(cardToAction.dataset.index);
 
     if (event.target.classList.contains("change-read")) { 
         
 
         myLibrary[currentArrayIndex].changeReadStatus();
-        const closestRead = cardToRemove.querySelector(".read");
+        const closestRead = cardToAction.querySelector(".read");
 
             if (closestRead) { 
                 closestRead.textContent = myLibrary[currentArrayIndex].read;
@@ -248,8 +248,8 @@ mainDiv.addEventListener("click", function (event) {
 
         console.log(currentArrayIndex,typeof(currentArrayIndex));
         console.log(myLibrary);
-            if (cardToRemove) { 
-                cardToRemove.remove();
+            if (cardToAction) { 
+                cardToAction.remove();
                 const remainingCardsIndex = document.querySelectorAll(".card");
 
                 remainingCardsIndex.forEach((card, newIndex) => { 
