@@ -98,7 +98,11 @@ function addBookToPage() {
     let pagesLabel = document.createElement("div");
     let pages = document.createElement("div");
     let read = document.createElement("div");
-// create divs for each iteration of loop
+    let buttons = document.createElement("div");
+    let remove = document.createElement("button");
+
+    // create each div that makes up complete card.
+
 
     card.classList.add("card");
     title.classList.add("title");
@@ -109,16 +113,20 @@ function addBookToPage() {
     pagesLabel.textContent= "Pages:";
     pages.classList.add("pages");
     read.classList.add("read");
+    remove.classList.add("remove");
 
-    // add specific attributes
+    // add specific attributes to these divs to inherit the card styling and content.
 
     
     let cards = document.querySelectorAll(".card");
     let count = cards.length;
 
-    card.setAttribute("data-type",count);
+    card.setAttribute("data-index",count);
     console.log(card);
 
+    // count number of '.card elements and assign the data-type value of length of all '.cards'. for associating each button 
+    // with index of myLibrary for removing.
+  
  
     let bookHolder = [];
     for (let key in lastBook) { 
@@ -131,7 +139,9 @@ function addBookToPage() {
     pages.textContent = bookHolder[2];
     read.textContent = bookHolder[3];
 
-    //loop through each object and assign key value to specific elements
+    remove.textContent = "Remove";
+
+    //loop through each object and assign key value to text of specific elements using for..in which handles looping through objects.
 
 
     // let newBook = document.createElement("div");
@@ -144,11 +154,16 @@ function addBookToPage() {
     card.appendChild(pagesLabel);
     card.appendChild(pages);
     card.appendChild(read);
+    buttons.appendChild(remove);
+    card.appendChild(buttons);
+
 
 
     mainDiv.appendChild(card);
 
     }
+
+    // once the text content has been assigned, we then append elements to DOM to make them visible on the page.
 
 
 const dialog = document.querySelector("dialog");
@@ -188,8 +203,49 @@ document.getElementById("new-book").addEventListener("submit", function (event) 
 })
 
 
+// when remove button is clicked: 
+
+//myLibrary item at index of 'data-index=' value is removed from myLibrary
+// card element (and hopefully all children with it) are removed
+// if not automatic, all children elements are removed/hidden. 
+// reassign data-index of remaining ".card" elements to correspond with new length of array. 
+
+mainDiv.addEventListener("click", function (event) { 
+    if (event.target.classList.contains("remove")) {
+
+        //locate the value of this card's data-index
+        //remove the object at myLibrary[this.data-index]
+        const cardToRemove = event.target.closest(".card");
+        const currentArrayIndex = cardToRemove.dataset.index;
+        myLibrary.splice(currentArrayIndex,1);
 
 
+        // locate all cards now that we've deleted. 
+        // assign index of cards. length to each card. 
+
+        
+
+        console.log(currentArrayIndex);
+        console.log(myLibrary);
+            if (cardToRemove) { 
+                cardToRemove.remove();
+                const remainingCardsIndex = document.querySelectorAll(".card");
+
+                remainingCardsIndex.forEach((card, newIndex) => { 
+                    card.setAttribute("data-index", newIndex );
+                });
+            }
+
+            // remainingCards.forEach((card, newIndex) => {
+            //     card.setAttribute("data-index", newIndex);
+            // });
+    
+    }
+}
+);
+
+//setting the event on the nearest 'parent' holding all of the remove buttons and then using event delegation to target the specific button.
+// saves adding individual event listeners on each button.
 
 
 
