@@ -72,3 +72,10 @@ dialog {
     padding: 0px 20px;
     font-weight: bold;
 }
+
+input:focus:invalid { 
+   
+    border-color: #900;
+    background-color: #fdd;
+
+}

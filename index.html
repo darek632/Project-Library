@@ -42,20 +42,20 @@
         <form action="#" method="dialog" class="new-book-form" id="new-book"> 
 
             <div class="form-content">
-                <label for="title-input">Title:</label>
+                <label for="title-input">Title:*</label>
                 <input autofocus type="text" id="title-input" name="title-input" minlength="2" required>
             </div>
             <div class="form-content">
-                <label for="author-input">Author:</label>
+                <label for="author-input">Author:*</label>
                 <input type="text" id="author-input" name="author-input" minlength="2" required>
             </div>
             <div class="form-content">
-                <label for="pages-input">Number of pages:</label>
+                <label for="pages-input">Number of pages:*</label>
                 <input type="number" id="pages-input" name="pages-input" min="1" required>
             </div>
             <div class="form-content">
                 <label for="read-input">Read</label>
-                <input type="radio" id="read-input" name="read" value="Read">
+                <input type="radio" id="read-input" name="read" value="Read" required>
                 <label for="not-read-input">Not read yet</label>
                 <input type="radio" id="not-read-input" name="read" value="Not read yet"> 
             </div>

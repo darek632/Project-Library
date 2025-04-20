@@ -1,15 +1,30 @@
 const myLibrary = [];
 
 
-// object constructor function
-function Book(title, author, pages, read) { 
+// // object constructor function
+// function Book(title, author, pages, read) { 
 
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.read = read;
    
+//   }
+
+  //refactoring as class
+
+  class Book { 
+    constructor(title,author,pages,read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+
+    }
   }
+
+
+
 
 let sampleBook1 = new Book ("Harry Potter and the Chamber of Secrets","J.K. Rowling",251, "Not read yet");
 let sampleBook2 = new Book ("The Satsuma Complex", "Bob Mortimer", 320, "Read");
@@ -29,59 +44,6 @@ secondCard.setAttribute("data-index","1");
 
 console.log(secondCard);
 
-
-
-
-// function addBookToLibrary() { 
-//     let question = prompt("Please enter the title,author,number of pages, read or not yet read, separated by commas", "Harry Potter and the Philosopher's stone, J K Rowling, 352, read");
-//     let bookParameters = question.split(",");
-//     let newBook = new Book(bookParameters[0], bookParameters[1], bookParameters[2], bookParameters[3]);
-//     myLibrary.push(newBook);
-
-//   }
-
-// function to loop through each array and display each book on page.
-
-
-
-// function to create card for each new book
-
-//creates initial card but does not append until we've looped through myLibrary and added each value to specific text content element
-
-    // card.classList.add("card");
-    // title.classList.add("title");
-    // authorLabel.classList.add("author-label");
-    // authorLabel.textContent= "Author:";
-    // author.classList.add("author");
-    // pagesLabel.classList.add("pages-label");
-    // pagesLabel.textContent= "Pages:";
-    // pages.classList.add("pages");
-    // read.classList.add("read");
-
-
-//     card.classList.add("card");
-
-
-//     cardClassNames.forEach(className => { 
-//         const div = document.createElement("div");
-//         div.classList.add(className);
-//         div.textContent = `this is ${className}`;
-//         card.appendChild(div);
-//     })
-
-//     mainDiv.appendChild(card) ;
-// }
-
-    // for (let i=0; i < 7; i++) { 
-    //     const div = document.createElement("div");
-    //     div.textContent = "Pussy bitch";
-    //     card.appendChild(div);
-    // }
-
-// let arraySplit = "";
-// for (let x in myLibrary) { 
-//     arraySplit += myLibrary[x] + " ";
-// };
 
 
 function addBookToPage() { 
